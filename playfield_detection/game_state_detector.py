@@ -71,8 +71,8 @@ def detect_hsv_values(image, grid_array):
     hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
     # Apply CLAHE for brightness normalization
-    v_channel = hsv_image[:, :, 2]
-    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
+    v_channel = hsv_image[:, :, 2] # extrace the brighness chanel from the image
+    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8)) # Kontrast zu verbessern -> teilt Bild in kleine Bereiche(8,8), wobei der Kontrast begrenzt wird, um das verstärken von Ruaschen zu vermeiden
     hsv_image[:, :, 2] = clahe.apply(v_channel)
 
     img_height, img_width = hsv_image.shape[:2]
